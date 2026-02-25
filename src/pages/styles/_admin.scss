@@ -1,0 +1,12 @@
+.admin {
+    display: grid;
+    grid-template-columns: 1fr 5fr; // sidebar 1/4, main 3/4
+    grid-template-rows: 100vh;      // full viewport height
+    height: 100vh;                  // ensure the container itself fills height
+    gap: 0;                          // optional gap between columns
+  }
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+}

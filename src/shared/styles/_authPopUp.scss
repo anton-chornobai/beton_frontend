@@ -1,0 +1,30 @@
+#modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__window {
+    padding: 50px 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+}
+
+.modal_info {
+    display: flex;
+    flex-direction: column;
+}

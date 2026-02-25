@@ -1,0 +1,27 @@
+@use "../../styles/mixins/button" as btn;
+
+.toolbar {
+    padding: 30px;
+
+    &_search {
+        padding: 10px;
+    }
+
+    &_analysis {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    &_filter {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+
+        &-new-order {
+            @include btn.button(#ff5349);
+        }
+    }
+
+
+}

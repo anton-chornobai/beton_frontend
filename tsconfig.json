@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",                    // output target, supports async/await
+      "lib": ["DOM", "ES2015", "DOM.Iterable"],  // include Promise, Map, Set, etc.
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "jsx": "react-jsx",
+      "strict": true,                         // enables strict type checking
+      "esModuleInterop": true,                // allows default import from CommonJS modules
+      "skipLibCheck": true,                   // skips type checking of node_modules
+      "forceConsistentCasingInFileNames": true,
+      "types": ["vite/client"]                // ensures Vite environment types are available
+    },
+    "include": ["src"]
+  }
+  

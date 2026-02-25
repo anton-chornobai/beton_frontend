@@ -1,0 +1,66 @@
+@use "../../styles/global.scss" as *;
+@use "../../styles/colors" as c;
+
+.header {
+  background-color: c.$primary-color;
+  padding: 16px 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+  &-content {
+    max-width: 1440px;  
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav a {
+  margin-left: 24px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: #b3b3b3;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.personal {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-pic {
+  min-width: 40px;
+  min-height: 40px;
+
+  &:hover {
+    background-color: lightgrey;
+  }
+}
+
+.profile-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+}

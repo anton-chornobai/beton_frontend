@@ -1,6 +1,8 @@
-import OrdersTable from "../../shared/OrdersTable";
+import OrdersTable from "./component/OrdersTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "./Order.module.scss"
+
 const Orders = () => {
   return (
     <div>

@@ -1,9 +1,6 @@
-import React from "react";
-import { ProductSection } from "../../shared/ProductSection";
-import { ProductList } from "../../shared/ProductList";
+import { ProductSection } from "./components/ProductSection";
+import { ProductList } from "./components/ProductList";
 import { mockTiles } from "../../model/mock/mockTileData";
-
-
 
 export const Products = () => {
   return (

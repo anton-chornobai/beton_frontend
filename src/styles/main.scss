@@ -3,5 +3,10 @@
 @use "../layout/footer/footer";
 @use "../layout/header/header";
 @use "../layout/main/main";
-@use "../features/auth/AuthPanes.module.scss"
+@use "../features/auth/AuthPanel.module.scss";
+@use "../features/profile/Profile.module.scss";
+@use "../features/orders/Order.module.scss";
+
+
+
 

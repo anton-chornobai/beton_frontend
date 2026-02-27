@@ -48,10 +48,6 @@
 .profile-pic {
   min-width: 40px;
   min-height: 40px;
-
-  &:hover {
-    background-color: lightgrey;
-  }
 }
 
 .profile-button {
@@ -63,4 +59,10 @@
 	cursor: pointer;
 	outline: inherit;
 
+}
+
+@media (max-width: 1000px) {
+  .header {
+    display: none;
+  }
 }

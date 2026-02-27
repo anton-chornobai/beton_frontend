@@ -1,0 +1,103 @@
+@use "../../styles/colors" as color;
+@use "../../styles/mixins/button" as mixins;
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.switch {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.switch button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  background: #e9ecef;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.switch button:hover {
+  background: #dee2e6;
+}
+
+.active {
+  color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+button[type="submit"] {
+  @include mixins.button
+}
+
+button[type="submit"]:hover {
+  background: color.$primary-color;
+}
+
+.signup-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-wrapper {
+  min-height: 3rem;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.buttons-wrapper > button {
+  width: 100%;
+  min-height: 100%;
+  @include mixins.button(color.$secondary-color, color.$primary-color)
+}
+
+.email-error {
+  color: red;
+}

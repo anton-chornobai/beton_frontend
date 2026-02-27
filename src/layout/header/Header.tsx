@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const openAuth = () => {
-      navigate("/profile")
+    navigate("/profile");
   };
 
   const changeLanguage = (lng: string) => {
@@ -21,26 +21,23 @@ const Header: React.FC = () => {
       <div className="header-content">
         <div className="left">
           <NavLink to="/" className="logo">
-            Beton
+            Стежка
           </NavLink>
         </div>
 
         <nav className="nav">
-          <NavLink to="/">{t("products")}</NavLink>
-
-          <NavLink to="/delivery">{t("delivery")}</NavLink>
-          <NavLink to="/contact">{t("contact")}</NavLink>
+          <NavLink to="/">{t("Головна")}</NavLink>
+          <NavLink to="/">{t("Товари")}</NavLink>
+          <NavLink to="/delivery">{t("Доставка")}</NavLink>
+          <NavLink to="/contact">{t("Контакти")}</NavLink>
+          <NavLink to="/orders">{t("Закази")}</NavLink>
+          <NavLink to="/auth/signup">{t("Регістрація")}</NavLink>
         </nav>
 
         <div className="personal">
           <button className="profile-button" onClick={openAuth}>
             <FontAwesomeIcon className="profile-pic" icon={faCircleUser} />
           </button>
-
-          <div>
-            <button onClick={() => changeLanguage("ua")}>UA</button>
-            <button onClick={() => changeLanguage("en")}>EN</button>
-          </div>
         </div>
       </div>
     </header>

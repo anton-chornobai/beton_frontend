@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
+import "./Profile.module.scss"
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -34,8 +35,6 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="profile__card">
-        <h2>My Profile</h2>
-
         <label>
           <span>Name</span>
           <input type="text" placeholder="Enter your name" />
@@ -54,9 +53,6 @@ const Profile = () => {
         <div className="profile__buttons">
           <button className="edit-btn">Edit Data</button>
           <button className="save-btn">Save</button>
-          <button className="cabinet-btn" onClick={() => navigate("/admin")}>
-            Admin Cabinet
-          </button>
         </div>
       </div>
     </div>

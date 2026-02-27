@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Tile } from "../features/products/types/Tile";
+import { Tile } from "../types/Tile";
 import { ProductCard } from "./ProductCard";
-import { Figure } from "../features/products/types/Figure";
-import { Vase } from "../features/products/types/Vase";
-import { AnyProduct, Product } from "../features/products/types/Product";
+import { Figure } from "../types/Figure";
+import { Vase } from "../types/Vase";
+import { AnyProduct, Product } from "../types/Product";
+import "../Product.modules.scss"
 
 type Props = {
   products: Tile[] | Figure[] | Vase[] | Product[];

@@ -7,13 +7,14 @@ import { Outlet, useLocation } from "react-router";
 
 function App() {
   const location = useLocation();
-  const authLocation = location.pathname === "auth";
+  const authLocation = location.pathname === "auth"; 
+  
 
   return (
     <>
-      <div className="wrappper">
+      <div className="wrapper">
         <Header />
-        <Main>
+        <Main >
           <Outlet />
         </Main>
         <Footer />

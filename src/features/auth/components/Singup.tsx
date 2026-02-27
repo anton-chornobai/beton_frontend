@@ -1,23 +1,32 @@
 import React, { useState } from "react";
+import postUser from "../api/users";
 
 export const SignupForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
+    try {
+      const res = await postUser("/auth/signup", {
+        email: email,
+        password: password,
+      });
 
-    console.log("Signup:", { email, password });
+      console.log("Success signing up!", res);
+    } catch (error: any) {
+      console.error("Signup failed:", error.message);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup-form">
       <div>
         <label>Email</label>
         <input

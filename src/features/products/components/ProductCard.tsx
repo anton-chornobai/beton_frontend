@@ -1,15 +1,14 @@
 import React from "react";
-import { Tile } from "../features/products/types/Tile";
+import { Tile } from "../types/Tile";
 
-import { Figure } from "../features/products/types/Figure";
-import { Vase } from "../features/products/types/Vase";
+import { Figure } from "../types/Figure";
+import { Vase } from "../types/Vase";
 
 type Props = {
   product: Tile | Vase | Figure;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const renderThickness = () => isTile(product) && (product.thickness && <p>Thickness: {product.thickness} mm</p>);
 
   return (
     <li className="card">
@@ -19,18 +18,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card-body">
-        <p>Price: ${product.price}</p>
-        <p>Color: {product.color}</p>
+        <p>Ціна: {product.price} грн</p>
+        <p>Колір: {product.color}</p>
         {product.size && (
           <p>
-            Size: {product.size.width} × {product.size.height} cm
+            Розмір: {product.size.width} × {product.size.height} cm
           </p>
         )}
-        {renderThickness()}
-      </div>
-
-      <div className="card-footer">
-        ID: {product.id}
       </div>
     </li>
   );

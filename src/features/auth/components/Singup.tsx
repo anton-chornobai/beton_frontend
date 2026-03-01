@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import postUser from "../api/users";
+import { useNavigate } from "react-router-dom";
 
 export const SignupForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -14,16 +16,18 @@ export const SignupForm: React.FC = () => {
       return;
     }
     try {
-      const res = await postUser("/auth/signup", {
+      const res = await postUser("/signup", {
         email: email,
         password: password,
       });
+      navigate("/verify", { state: { email } });
 
       console.log("Success signing up!", res);
     } catch (error: any) {
       console.error("Signup failed:", error.message);
-    }
-  };
+    } 
+
+  };  
 
   return (
     <form onSubmit={handleSubmit} className="signup-form">
@@ -61,3 +65,4 @@ export const SignupForm: React.FC = () => {
     </form>
   );
 };
+

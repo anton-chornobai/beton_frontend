@@ -1,7 +1,5 @@
-const url = "http://localhost:8080"
-
 async function postUser(endpoint = "", data = {}) {
-  const response = await fetch(url + endpoint, {
+  const response = await fetch(import.meta.env.VITE_API_URL + endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

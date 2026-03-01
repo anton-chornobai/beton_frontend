@@ -9,12 +9,12 @@ export const AuthPanel = () => {
   const [authMethod, setAuthMethod] = useState<"signup" | "login">("signup");
 
   const selectSignupMethod = () => {
-    navigate("/auth/signup");
+    navigate("/signup");
     setAuthMethod("signup");
   };
 
   const selectLoginMethod = () => {
-    navigate("/auth/login");
+    navigate("/login");
     setAuthMethod("login");
   };
 

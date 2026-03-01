@@ -31,7 +31,6 @@ const Header: React.FC = () => {
           <NavLink to="/delivery">{t("Доставка")}</NavLink>
           <NavLink to="/contact">{t("Контакти")}</NavLink>
           <NavLink to="/orders">{t("Закази")}</NavLink>
-          <NavLink to="/auth/signup">{t("Регістрація")}</NavLink>
         </nav>
 
         <div className="personal">

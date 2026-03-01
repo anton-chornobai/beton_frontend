@@ -101,3 +101,19 @@ button[type="submit"]:hover {
 .email-error {
   color: red;
 }
+
+.verification {
+  display: flex;
+    flex-direction: column;
+
+}
+
+.verification > button{
+  @include mixins.button
+} 
+
+.verification__title {
+
+}
+
+

@@ -11,6 +11,7 @@ import Profile from "../features/profile/Profile.tsx";
 import Contact from "../features/contact/Contact.tsx";
 
 import AuthPopUp from "../shared/AuthPopUp.tsx";
+import Verify from "../features/auth/components/Verify.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,11 @@ const router = createBrowserRouter([
       },
       { path: "contact", Component: Contact },
       { path: "auth", Component: AuthPopUp },
-      { path: "auth/signup", Component: AuthPanel },
-      { path: "auth/login", Component: AuthPanel },
+      { path: "signup", Component: AuthPanel },
+      { path: "login", Component: AuthPanel },
+      { path: "verify", Component: Verify },
       { path: "orders", Component: Orders },
+      {}
     ],
   },
 ]);

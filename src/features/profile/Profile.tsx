@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import "./Profile.module.scss"
+import { Navigate } from "react-router-dom";
+import "./Profile.module.scss";
+import { User } from "./types/user";
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading ] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function checkAuth() {
+    const checkAuth = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {credentials: "include"})
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/profile`,
+          { credentials: "include" }
+        );
 
-        if (res.ok) {
-          console.log("I got through")
-          setIsAuthenticated(true)
-        }
+        if (!res.ok) throw new Error("Not authenticated");
 
-      } catch(err) {
-        console.error("Auth check failed", err);
+        const data = await res.json();
+        setUser(data.user); // assuming backend returns { user: {...} }
+      } catch {
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    } 
-    checkAuth()
+    };
 
-    console.log(1)
-  }, [isAuthenticated])
+    checkAuth();
+  }, []);
 
   if (loading) return <div>Loading...</div>;
-  if (!isAuthenticated) {
-    return <Navigate to="/auth" replace />;
+
+  if (!user) {
+    return <Navigate to="/signup" replace />;
   }
 
   return (
@@ -37,12 +40,17 @@ const Profile = () => {
       <div className="profile__card">
         <label>
           <span>Name</span>
-          <input type="text" placeholder="Enter your name" />
+          <input type="text" defaultValue={user.name && ""} />
         </label>
 
         <label>
           <span>Phone Number</span>
-          <input type="text" placeholder="+38 012 345 6789" />
+          <input type="text" placeholder={user.number ?? ""}/>
+        </label>
+
+        <label>
+          <span>Email</span>
+          <input type="text" value={user.email} />
         </label>
 
         <label>

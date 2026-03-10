@@ -1,8 +1,9 @@
 import React from "react";
 import { Tile } from "../types/Tile";
-
 import { Figure } from "../types/Figure";
 import { Vase } from "../types/Vase";
+import styles from "../Product.module.scss"
+
 
 type Props = {
   product: Tile | Vase | Figure;
@@ -11,7 +12,7 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
-    <li className="card">
+    <li className={styles.card}>
       <div className="card-header">
         <img src={product.imageUrl} alt={product.title} />
         <h3>{product.title}</h3>

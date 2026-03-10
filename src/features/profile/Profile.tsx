@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import "./Profile.module.scss";
+import profile from "./Profile.module.scss";
 import { User } from "./types/user";
+import { SideBar } from "./components/SideBar";
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -10,10 +11,9 @@ const Profile = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/profile`,
-          { credentials: "include" }
-        );
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/profile`, {
+          credentials: "include",
+        });
 
         if (!res.ok) throw new Error("Not authenticated");
 
@@ -37,7 +37,9 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <div className="profile__card">
+      <SideBar userRole={user.role} />
+      <div className={profile.settings}>
+        <h2>Профіль</h2>
         <label>
           <span>Name</span>
           <input type="text" defaultValue={user.name && ""} />
@@ -45,7 +47,7 @@ const Profile = () => {
 
         <label>
           <span>Phone Number</span>
-          <input type="text" placeholder={user.number ?? ""}/>
+          <input type="text" placeholder={user.number ?? ""} />
         </label>
 
         <label>

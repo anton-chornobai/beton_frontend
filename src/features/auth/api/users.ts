@@ -8,10 +8,11 @@ async function postUser(endpoint = "", data = {}) {
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    const text = await response.text;
-  }
-  return response.json();
+
+
+  
+
+  return response;
 }
 
 export default postUser;

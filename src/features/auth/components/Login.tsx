@@ -7,7 +7,7 @@ export const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,10 +16,30 @@ export const LoginForm: React.FC = () => {
     setPasswordError("");
   
     try {
-      await postUser("/login", { email, password });
+      const res = await postUser("/login", { email, password });
+  
+      const data = await res.json();
+  
+      if (res.status === 403) {
+        navigate("/verify", { state: { email } });
+        return;
+      }
+  
+      if (res.status === 401) {
+        setEmailError(data.error || "Invalid credentials");
+        return;
+      }
+  
+      if (!res.ok) {
+        setEmailError(data.error || "Login failed");
+        return;
+      }
+  
+      // Success
       navigate("/profile");
-    } catch (err: any) {
-      setEmailError(err.message || "Login failed");
+  
+    } catch (err) {
+      setEmailError("Network error");
     }
   };
   return (

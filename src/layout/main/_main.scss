@@ -1,8 +1,11 @@
 .main {
     background-color: #F9F3EF;
-    min-width: 100%;
-    height: 100%;
+    width: 100%;
+
     &-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         max-width: 1440px;
         margin: 0 auto;
     }

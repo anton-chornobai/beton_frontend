@@ -2,6 +2,7 @@
 @use "../../styles/mixins/button" as mixins;
 
 .wrapper {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -111,9 +112,3 @@ button[type="submit"]:hover {
 .verification > button{
   @include mixins.button
 } 
-
-.verification__title {
-
-}
-
-

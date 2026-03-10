@@ -4,6 +4,7 @@ import Main from "../layout/main/Main";
 import Footer from "../layout/footer/Footer";
 import AuthPopUp from "../shared/AuthPopUp";
 import { Outlet, useLocation } from "react-router";
+import FrontPage from "../features/front/FrontPage";
 
 function App() {
   const location = useLocation();

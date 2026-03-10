@@ -1,18 +1,51 @@
 @use "../../styles/mixins/button" as buttons;
 
 .profile {
-  height: 100%;
-}
-
-.profile__card  {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 40px;
-  padding: 2.5rem;
+  height: 100%;
+  margin-top: 1.2rem;
 }
 
 .profile__buttons > button {
-    @include buttons.button
+  @include buttons.button;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 2rem 2rem 2rem;
+}
+
+.settings > h2 {
+  margin-bottom: 2rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; // spacing between items
+  border-right: 1px solid lightgrey; // right line only
+  list-style: none;
+  padding: 0 1rem 1rem 0; // padding on top/right/bottom, none on left
+}
+
+.sidebar__item {
+  padding: 0.25rem 0; // vertical padding
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sidebar__sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  padding: 0.5rem 0 0.25rem;
+  border-top: 1px solid lightgrey;
 }

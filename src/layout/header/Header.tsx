@@ -27,10 +27,9 @@ const Header: React.FC = () => {
 
         <nav className="nav">
           <NavLink to="/">{t("Головна")}</NavLink>
-          <NavLink to="/">{t("Товари")}</NavLink>
+          <NavLink to="/products">{t("Товари")}</NavLink>
           <NavLink to="/delivery">{t("Доставка")}</NavLink>
           <NavLink to="/contact">{t("Контакти")}</NavLink>
-          <NavLink to="/orders">{t("Закази")}</NavLink>
         </nav>
 
         <div className="personal">

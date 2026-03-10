@@ -1,34 +1,37 @@
-export interface OrderItem {
-  productId: string;
-  name: string;
-  price: number;
-  quantity: number;
+export type OrderStatus = "очікується" | "підтверджено" | "відправлено" | "доставлено" | "скасовано";
+export type PaymentStatus = "неоплачено" | "оплачено" | "не вдалося" | "повернено";
+
+export interface Size {
+  height: number;
+  width: number;
+  thickness: number;
 }
 
-export interface CustomerInfo {
+export interface OrderItem {
   id: string;
-  name: string;
-  email: string;
-  phone?: string;
-  address?: string;
+  title: string;
+  type: string;
+  color: string;
+  material: string;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  unit_price: number;
+  size: Size;
 }
 
 export interface Order {
-  id: string;
-  createdAt: string;
-  updatedAt?: string;
-
-  customer: CustomerInfo;
-  items: OrderItem[];
-
+  id: number;
   total: number;
-  paymentMethod: "card" | "cash" | "paypal";
-  paymentStatus: "paid" | "pending" | "failed";
-
-  deliveryMethod: "courier" | "pickup" | "post";
-  deliveryAddress?: string;
-  deliveryStatus: "pending" | "sent" | "delivered";
-
-  fulfilled: boolean;
-  notes?: string;
+  user_id: string;
+  order_name: string;
+  items: OrderItem[];
+  status: OrderStatus;
+  payment_status: PaymentStatus;
+  discount?: number;
+  shipping_address?: string;
+  shipping_city?: string;
+  shipping_postal_code?: string;
+  created_at: Date;
+  updated_at: Date;
 }

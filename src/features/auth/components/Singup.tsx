@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const SignupForm: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -20,14 +21,20 @@ export const SignupForm: React.FC = () => {
         email: email,
         password: password,
       });
+      
+      const responseData = await res.json();
+      if (!res.ok) {
+        throw new Error(responseData.error || "Request failed");
+      }
+
       navigate("/verify", { state: { email } });
 
       console.log("Success signing up!", res);
-    } catch (error: any) {
-      console.error("Signup failed:", error.message);
-    } 
-
-  };  
+    } catch (err: any) {
+      console.error("Signup failed:", err.message);
+      setEmailErr(err.message || "Signup failed");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="signup-form">
@@ -36,9 +43,13 @@ export const SignupForm: React.FC = () => {
         <input
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) =>  {
+            setEmailErr("")
+            setEmail(e.target.value)
+          }}
           required
         />
+        {emailErr && <span>{emailErr}</span>}
       </div>
 
       <div>
@@ -65,4 +76,3 @@ export const SignupForm: React.FC = () => {
     </form>
   );
 };
-

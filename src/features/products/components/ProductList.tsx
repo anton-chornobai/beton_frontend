@@ -4,7 +4,7 @@ import { ProductCard } from "./ProductCard";
 import { Figure } from "../types/Figure";
 import { Vase } from "../types/Vase";
 import { AnyProduct, Product } from "../types/Product";
-import "../Product.modules.scss"
+import "../Product.module.scss"
 
 type Props = {
   products: Tile[] | Figure[] | Vase[] | Product[];

@@ -1,41 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Tile } from "../types/Tile";
 import { ProductCard } from "./ProductCard";
-import { Figure } from "../types/Figure";
-import { Vase } from "../types/Vase";
-import { AnyProduct, Product } from "../types/Product";
-import "../Product.module.scss"
+import styles from "../Product.module.scss";
+import { getProducts } from "../api/products";
 
 type Props = {
-  products: Tile[] | Figure[] | Vase[] | Product[];
-};
+  products: any[]
+}
 
-export const ProductList: React.FC<Props> = ({ products }) => {
-  const [items, setItems] = useState<(Tile | Figure | Vase)[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/");
-        if (!response.ok) throw new Error("Failed to fetch");
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (products.length == 0 ) {
-     return <div>No elements found</div>
-  }
-
+export const ProductList: React.FC<Props> = ({ products}) => {
   return (
-    <ul className="product-list">
-        {products.map((product: AnyProduct ) => <ProductCard key={`${product.id}`}  product={product} />)}
+    <ul className={styles.product_list}>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </ul>
   );
 };
-

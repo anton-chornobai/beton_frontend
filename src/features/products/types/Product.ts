@@ -4,21 +4,24 @@ import { Figure } from "./Figure";
 import { Tile } from "./Tile";
 import { Vase } from "./Vase";
 
-export interface Product {
-    id: number,
-    title: string,
-    price: number,
-    type: ProductType,
-    imageUrl: string,
-    color: TileColor,
-    stockQuantity?: number,
-    description?: string,
-    weight?: number,
-    rating?: number,
-    size?: {
-        width: number,
-        height: number,
-    },
-}
+interface Size {
+    width?: number;
+    height?: number;
+  }
+  
+  export interface Product {
+    id: number;
+    price: number;
+    title: string;
+    type: string;
+    color: string;
+    status: string;
+    imageUrl?: string;
+    description?: string;
+    stockQuantity?: number;
+    weight?: number;
+    rating?: number;
+    size?: Size | null;
+  }
 
 export type AnyProduct = Product | Figure | Tile | Vase

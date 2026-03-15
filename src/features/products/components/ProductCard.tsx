@@ -1,38 +1,48 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "../Product.module.scss";
+import { Vase } from "../types/Vase";
 import { Tile } from "../types/Tile";
 import { Figure } from "../types/Figure";
-import { Vase } from "../types/Vase";
-import styles from "../Product.module.scss"
-
 
 type Props = {
   product: Tile | Vase | Figure;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/products/${product.id}`);
+  };
 
   return (
     <li className={styles.card}>
-      <div className="card-header">
+      <div className={styles.image}>
         <img src={product.imageUrl} alt={product.title} />
-        <h3>{product.title}</h3>
       </div>
 
-      <div className="card-body">
-        <p>Ціна: {product.price} грн</p>
-        <p>Колір: {product.color}</p>
-        {product.size && (
-          <p>
-            Розмір: {product.size.width} × {product.size.height} cm
-          </p>
-        )}
+      <div className={styles.content}>
+        <h3 className={styles.title}>{product.title}</h3>
+
+        <div className={styles.meta}>
+          <span className={styles.tag}>Колір: {product.color}</span>
+
+          {product.size && (
+            <span className={styles.tag}>
+              {product.size.width} × {product.size.height} cm
+            </span>
+          )}
+        </div>
+
+        <div className={styles.footer}>
+          <span className={styles.price}>{product.price} грн</span>
+
+          <button className={styles.button} onClick={handleClick}>
+            Переглянути
+          </button>
+        </div>
       </div>
     </li>
   );
 };
-
-// Guard checking the incoming obejcts whether they have appropriate properties to render
-
-function isTile(product: any): product is Tile {
-  return (product as Tile).thickness !== undefined;
-}

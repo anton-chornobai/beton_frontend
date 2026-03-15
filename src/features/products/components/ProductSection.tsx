@@ -1,17 +1,17 @@
 import React, { ReactElement } from "react";
-
+import styles from "../Product.module.scss"
 import { ProductList } from "./ProductList";
 
 type Props = {
   title: string;
-  children: ReactElement <typeof ProductList>;
+  children: React.ReactNode;
 };
 
 export const ProductSection: React.FC<Props> = ({ title, children }) => {
   return (
-    <React.Fragment>
+    <section className={styles.productSection}>
       <h2>{title}</h2>
-      <section>{children}</section>
-    </React.Fragment>
+      <div className={styles.sectionContent}>{children}</div>
+    </section>
   );
 };

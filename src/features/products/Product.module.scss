@@ -1,68 +1,126 @@
-.product-list {
+.product_list {
   display: flex;
   flex-direction: row;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
 }
 
+.productSection {
+  width: 100vw;
+  margin-top: 1.6rem;
+}
+
+.productSection > h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.sectionContent {
+  width: 100%;
+}
 .card {
-  list-style: none;
-  background-color: #f9f9f9;
-  border-radius: 12px;
+  flex: 1 1 240px;
+  max-width: 280px;
+  background: #fff;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.15);
 }
 
-.card-header {
-  position: relative;
-  text-align: center;
-  background-color: #fff;
-  padding: 16px;
-}
+/* IMAGE */
 
-.card-header img {
+.image {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
-}
-
-.card-header h3 {
-  max-width: 280px;
-  min-width: 200px;
-  width: 100%;
-  margin-top: 12px;
-  font-size: 1.1rem;
-  color: #1f2937;
-  font-weight: 600;
-  white-space: nowrap;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+  background: #f3f4f6;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* CONTENT */
+
+.content {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.card-body {
-  padding: 12px 16px;
+/* META INFO */
+
+.meta {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 6px;
-  font-size: 0.95rem;
-  color: #4b5563;
 }
-.card-body p:first-child {
-  font-weight: 600;
-  color: #111827;
+
+.tag {
+  font-size: 0.75rem;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #374151;
 }
-@media (hover: hover) {
-  .card:hover {
-    transform: scale(1.03);
-  }
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
 }
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* BUTTON */
+
+.button {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background: #374151;
+}
+

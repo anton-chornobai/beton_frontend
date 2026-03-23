@@ -19,7 +19,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <li className={styles.card}>
       <div className={styles.image}>
-        <img src={product.imageUrl} alt={product.title} />
+        <img src={product.image_url} alt={product.title} />
       </div>
 
       <div className={styles.content}>

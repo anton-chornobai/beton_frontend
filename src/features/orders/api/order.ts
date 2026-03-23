@@ -1,4 +1,4 @@
-import { Order } from "../types/Order";
+import { Order, OrderForm } from "../types/Order";
 
 export const getOrders = async (endpoint: string = "") => {
     const res = await fetch(import.meta.env.VITE_API_URL + endpoint, {
@@ -12,7 +12,7 @@ export const getOrders = async (endpoint: string = "") => {
     return res;
 }
 
-const postOrder = async (endpoint: string = "", data: Order) => {
+export const postOrder = async (endpoint: string = "", data: OrderForm) => {
     const res = await fetch(import.meta.env.VITE_API_URL + endpoint, {
         method: 'POST',
         headers: {

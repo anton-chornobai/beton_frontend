@@ -1,47 +1,78 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Inventory.module.scss";
 import AddProductModal from "./components/AddProductModal";
+import FilterPanel from "./components/FilterPanel";
 import { getProducts, postProduct } from "./api/products";
-import { Product, ProductForm } from "./types/product";
+import { Product } from "../products/types/Product";
+
+export type ProductForm = Omit<Product, "id" | "size"> & {
+  width?: number;
+  height?: number;
+};
 
 const Inventory = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filter, setFilter] = useState<{
+    status?: string;
+    sortPrice?: "asc" | "desc";
+  }>({});
+  const [search, setSearch] = useState("");
+
+  const initialForm: ProductForm = {
+    title: "",
+    type: "",
+    price: 0,
+    stock_quantity: 0,
+    image_url: "",
+    color: "",
+    description: "",
+    status: "archived",
+    weight: 0,
+    rating: 0,
+    width: 0,
+    height: 0,
+  };
+
+  const [form, setForm] = useState<ProductForm>(initialForm);
+
   useEffect(() => {
-    async function GetProducts() {
+    async function fetchProducts() {
       try {
         const res = await getProducts("/v1/products");
-        if (!res.ok) {
-          throw new Error("Something went wrong");
-        }
+        if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
         setProducts(data?.data || []);
-        console.log(data);
+        setFilteredProducts(data?.data || []);
       } catch (error) {
         console.error(error);
       }
     }
-
-    GetProducts();
+    fetchProducts();
   }, []);
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  useEffect(() => {
+    let temp = [...products];
 
-  const initialForm: ProductForm = {
-    title: "",
-    product_type: "",
-    price: 0,
-    stock_quantity: 0,
-    image_url: null,
-    color: null,
-    description: null,
-    status: "archived",
-    weight_grams: null,
-    rating: null,
-    size_width: null,
-    size_height: null,
-  };
+    if (filter.status) temp = temp.filter((p) => p.status === filter.status);
 
-  const [form, setForm] = useState<ProductForm>(initialForm);
+    if (search.trim() !== "") {
+      temp = temp.filter((p) =>
+        p.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (filter.sortPrice) {
+      temp.sort((a, b) =>
+        filter.sortPrice === "asc"
+          ? (a.price || 0) - (b.price || 0)
+          : (b.price || 0) - (a.price || 0)
+      );
+    }
+
+    setFilteredProducts(temp);
+  }, [filter, search, products]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -52,31 +83,29 @@ const Inventory = () => {
 
     setForm({
       ...form,
-      [name]:
-        value === ""
-          ? null
-          : name.includes("price") ||
-            name.includes("quantity") ||
-            name.includes("size") ||
-            name.includes("weight") ||
-            name.includes("rating")
-          ? Number(value)
-          : value,
+      [name]: [
+        "price",
+        "stock_quantity",
+        "weight",
+        "rating",
+        "width",
+        "height",
+      ].includes(name)
+        ? Number(value)
+        : value || "",
     });
   };
 
+  // Submit new product
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       const res = await postProduct("/v1/products", form);
-
       if (res.status !== 200 && res.status !== 201) {
         const data = await res.json();
-        throw new Error(data.message || "Something went wrong");
+        throw new Error(data.message || "Failed to post product");
       }
-
-      console.log("Product posted successfully");
     } catch (error) {
       console.error(error);
       return;
@@ -85,7 +114,7 @@ const Inventory = () => {
     const newProduct: Product = {
       id: products.length + 1,
       ...form,
-    } as Product;
+    };
 
     setProducts([...products, newProduct]);
     setIsModalOpen(false);
@@ -96,7 +125,13 @@ const Inventory = () => {
     <div className={styles.inventory}>
       <h2>Inventory</h2>
 
-      
+      <FilterPanel
+        setFilter={setFilter}
+        setSearch={setSearch}
+        search={search}
+        setIsModalOpen={setIsModalOpen}
+      />
+
       <table className={styles.products_table}>
         <thead>
           <tr>
@@ -110,28 +145,28 @@ const Inventory = () => {
             <th>Розмір (Ш×В)</th>
           </tr>
         </thead>
-        {products.length ? (
-          <tbody>
-            {products.map((p) => (
+        <tbody>
+          {filteredProducts.length ? (
+            filteredProducts.map((p: Product) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
                 <td>{p.title}</td>
-                <td>{p.product_type}</td>
-                <td>{p.price !== null ? `${p.price} грн` : "-"}</td>
-                <td>{p.stock_quantity !== null ? p.stock_quantity : "-"}</td>
+                <td>{p.type}</td>
+                <td>{p.price != null ? `${p.price} грн` : "-"}</td>
+                <td>{p.stock_quantity != null ? p.stock_quantity : "-"}</td>
                 <td>{p.status}</td>
                 <td>{p.color || "-"}</td>
-                <td>
-                  {p.size_width !== null && p.size_height !== null
-                    ? `${p.size_width} × ${p.size_height}`
-                    : "-"}
-                </td>
+                <td>{p.size ? `${p.size.width} × ${p.size.height}` : "-"}</td>
               </tr>
-            ))}
-          </tbody>
-        ) : (
-          <div>No items</div>
-        )}
+            ))
+          ) : (
+            <tr>
+              <td colSpan={8} style={{ textAlign: "center" }}>
+                No items
+              </td>
+            </tr>
+          )}
+        </tbody>
       </table>
 
       <AddProductModal

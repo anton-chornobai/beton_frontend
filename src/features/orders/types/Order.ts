@@ -4,16 +4,14 @@ export type PaymentStatus = "неоплачено" | "оплачено" | "не 
 export interface Size {
   height: number;
   width: number;
-  thickness: number;
 }
 
 export interface OrderItem {
-  id: string;
+  id?: string;
   title: string;
   type: string;
   color: string;
-  material: string;
-  order_id: number;
+  order_id?: number;
   product_id: number;
   quantity: number;
   unit_price: number;
@@ -22,6 +20,8 @@ export interface OrderItem {
 
 export interface Order {
   id: number;
+  customer_name: string;
+  customer_number?: string;
   total: number;
   user_id: string;
   order_name: string;
@@ -32,6 +32,22 @@ export interface Order {
   shipping_address?: string;
   shipping_city?: string;
   shipping_postal_code?: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+export interface OrderForm {
+  userId?: string; 
+  order_name: string;
+  customer_name: string;
+  customer_number: string | null;
+  payment_status: string;
+  description: string | null;
+  status: OrderStatus;
+  shipping_address: string | null;
+  shipping_city: string | null;
+  shipping_postal_code: string | null;
+  items: OrderItem[];
+  total: number;
+  discount?: number;
 }

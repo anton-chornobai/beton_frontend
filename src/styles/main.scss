@@ -1,7 +1,7 @@
 @use "./global.scss";
 @use "./colors.scss";
 @use "../layout/footer/Footer.module.scss";
-@use "../layout/header/header";
+@use "../layout/header/header.module.scss";
 @use "../layout/main/main";
 @use "../features/auth/AuthPanel.module.scss";
 @use "../features/profile/Profile.module.scss";
@@ -9,7 +9,6 @@
 @use "../features/front/FrontPage.module.scss";
 @use "../shared/productSlider/ProductSlider.module.scss";
 @use "../shared/Buttons/Button.module.scss";
-@use "../features/products/components/product_page/ProductPage.module.scss"
-
-
-
+@use "../features/products/components/product_page/ProductPage.module.scss";
+@use "../features/orders/component/CreateOrderModal.module.scss";
+@use "../features/orders/component/ProductPicker.module.scss";

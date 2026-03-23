@@ -4,9 +4,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./Order.module.scss";
 import { useState } from "react";
 import orders from "./Order.module.scss";
-
+import CreateOrderModal from "./component/CreateOrderModal";
 
 const Orders = () => {
+  const [newProductModalIsOpen, setNewProductModalIsOpen] = useState(false);
 
   return (
     <div className={orders.order_container}>
@@ -30,11 +31,18 @@ const Orders = () => {
             />
           </div>
           <button
+            onClick={() => setNewProductModalIsOpen(true)}
             className="new_order_button"
           >
             New Order <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
+        {newProductModalIsOpen && (
+          <CreateOrderModal
+            onClose={() => setNewProductModalIsOpen(false)}
+            isOpen={() => setNewProductModalIsOpen(true)}
+          />
+        )}
 
         <OrdersTable />
       </div>

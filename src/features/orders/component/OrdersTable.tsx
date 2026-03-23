@@ -38,7 +38,7 @@ const OrdersTable: React.FC = () => {
     return <p>Loading...</p>;
   }
 
-  if (orders.length === 0) {
+  if (orders.length === 0 || !orders) {
     return <p className={styles.not_found}>No orders</p>;
   }
 

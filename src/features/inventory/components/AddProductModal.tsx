@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../Inventory.module.scss";
-import { ProductForm } from "../types/product";
+import { ProductForm } from "../Inventory";
 
 type Props = {
   isModalOpen: boolean;
@@ -46,19 +46,16 @@ const AddProductModal: React.FC<Props> = ({
 
           <label>
             Тип продукту
-            <select
-              name="product_type"
-              value={form.product_type}
-              onChange={onChange}
-              required
-            >
+            <select name="type" value={form.type} onChange={onChange} required>
               <option value="">Оберіть тип</option>
-              <option value="tile">плитка</option>
-              <option value="vase">ваза</option>
-              <option value="figure">фігура</option>
-              <option value="fountain">фонтан</option>
+              <option value="tile">Плитка</option>
+              <option value="vase">Ваза</option>
+              <option value="figure">Фігура</option>
+              <option value="fountain">Фонтан</option>
             </select>
           </label>
+
+          {/* Price */}
           <label>
             Ціна
             <input
@@ -72,6 +69,7 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
+          {/* Stock Quantity */}
           <label>
             Кількість на складі
             <input
@@ -85,6 +83,7 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
+          {/* Image URL */}
           <label>
             URL зображення
             <input
@@ -95,11 +94,18 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
+          {/* Color */}
           <label>
             Колір
-            <input name="color" value={form.color || ""} onChange={onChange} />
+            <input
+              name="color"
+              type="text"
+              value={form.color || ""}
+              onChange={onChange}
+            />
           </label>
 
+          {/* Description */}
           <label>
             Опис
             <textarea
@@ -109,6 +115,7 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
+          {/* Status */}
           <label>
             Статус
             <select
@@ -122,38 +129,41 @@ const AddProductModal: React.FC<Props> = ({
             </select>
           </label>
 
+          {/* Weight */}
           <label>
             Вага (грам)
             <input
-              name="weight_grams"
+              name="weight"
               type="number"
               min={0}
               step={1}
-              value={form.weight_grams ?? ""}
+              value={form.weight ?? 0}
               onChange={onChange}
             />
           </label>
 
+          {/* Size Width */}
           <label>
             Ширина (см)
             <input
-              name="size_width"
+              name="width"
               type="number"
               min={0}
               step={1}
-              value={form.size_width ?? ""}
+              value={form?.width ?? 0}
               onChange={onChange}
             />
           </label>
 
+          {/* Size Height */}
           <label>
             Висота (см)
             <input
-              name="size_height"
+              name="height"
               type="number"
               min={0}
               step={1}
-              value={form.size_height ?? ""}
+              value={form?.height ?? 0}
               onChange={onChange}
             />
           </label>

@@ -9,5 +9,19 @@
         max-width: 1440px;
         margin: 0 auto;
         width: 1440px;
+        overflow-x:hidden;
     }
+
+  
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-x: hidden;
 }

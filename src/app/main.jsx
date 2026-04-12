@@ -6,7 +6,6 @@ import "../styles/main.scss";
 import Delivery from "../pages/Delivery.tsx";
 import { Products } from "../features/products/Products.tsx";
 import ProductPage  from "../features/products/components/product_page/ProductPage.tsx";
-
 import  { AuthPanel }  from "../features/auth/AuthPanel.tsx";
 import  Orders   from "../features/orders/Orders.tsx";
 import  Inventory   from "../features/inventory/Inventory.tsx";
@@ -14,6 +13,7 @@ import  FrontPage   from "../features/front/FrontPage.tsx";
 import Profile from "../features/profile/Profile.tsx";
 import Contact from "../features/contact/Contact.tsx";
 import NotFound from "../pages/NotFound.tsx"
+
 
 
 import Verify from "../features/auth/components/Verify.tsx";
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       { index: true, Component: FrontPage},
       { path: "/products", Component: Products},
       { path: "/products/:id", Component: ProductPage},
+
       { path: "delivery", Component: Delivery },
       {
         path: "profile",
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "verify", Component: Verify },
       { path: "orders", Component: Orders },
       { path: "inventory", Component: Inventory},
+      { path: "inventory/:id", Component: Inventory},
       { path: "*", Component: NotFound}
     ],
   },

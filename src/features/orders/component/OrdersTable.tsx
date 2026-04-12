@@ -3,33 +3,15 @@ import styles from "../Order.module.scss";
 import { getOrders } from "../api/order";
 import { Order } from "../types/Order";
 
-const OrdersTable: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [orders, setOrders] = useState<Order[]>([]);
+type Props = {
+    loading: boolean
+    orders: Order[]
+}
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        setLoading(true);
-        const res = await getOrders("/v1/orders");
+const OrdersTable: React.FC<Props> = ({orders, loading}) => {
+  const handleCreate = () => {
 
-        if (!res.ok) {
-          throw new Error("Error: " + res.status);
-        }
-
-        const data = await res.json();
-        console.log(data);
-
-        setOrders(data.data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchOrders();
-  }, []);
+  }
 
   const handleViewDetails = (orderId: number) => {
     console.log("View details for order:", orderId);
@@ -61,7 +43,7 @@ const OrdersTable: React.FC = () => {
         {orders.map((order) => (
           <tr key={order.id}>
             <td>{order.id}</td>
-            <td>{order.order_name}</td>
+            <td>{order.customer_name}</td>
             <td>{order.total} грн</td>
             <td>{order.status}</td>
             <td>{order.payment_status}</td>

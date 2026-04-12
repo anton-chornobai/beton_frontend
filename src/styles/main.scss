@@ -12,3 +12,6 @@
 @use "../features/products/components/product_page/ProductPage.module.scss";
 @use "../features/orders/component/CreateOrderModal.module.scss";
 @use "../features/orders/component/ProductPicker.module.scss";
+@use "../shared/modals/AreYouSure.module.scss";
+@use "../features/contact/ContactPage.module.scss";
+

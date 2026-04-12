@@ -3,27 +3,28 @@ import styles from "./CreateOrderModal.module.scss";
 import ProductPicker from "./ProductPicker";
 import { getProducts } from "../../products/api/products";
 import { Product } from "../../products/types/Product";
-import { OrderForm, OrderItem } from "../types/Order";
+import { Order, OrderForm, OrderItem, PaymentStatus } from "../types/Order";
 import { postOrder } from "../api/order";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  orders: Order[];
+  setOrders: React.Dispatch<React.SetStateAction<Order[]>>
 };
 
-const CreateOrderModal: React.FC<Props> = ({ isOpen, onClose }) => {
+const CreateOrderModal: React.FC<Props> = ({ isOpen, onClose, orders, setOrders }) => {
   const [stage, setStage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
   const [productPickerOpen, setProductPickerOpen] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-
   const [orderForm, setOrderForm] = useState<OrderForm>({
     order_name: "order1",
     customer_name: "",
     customer_number: null,
     description: "",
-    payment_status: "неоплачено",
-    status: "очікується",
+    payment_status: "unpaid",
+    status: "pending",
     discount: 0,
     shipping_address: null,
     shipping_city: null,
@@ -112,10 +113,41 @@ const CreateOrderModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
     try {
       console.log("Submitting order:", payload);
+
       const res = await postOrder("/v1/orders", payload);
       if (!res.ok) {
         throw new Error("Failed to post order");
       }
+
+      const data = await res.json();
+
+      if (!data.id) {
+        throw new Error("Invalid response: missing order ID");
+      }
+
+      const serverOrderID = data.id
+
+      setOrders(prev => [
+        ...prev,
+        {
+          id: serverOrderID,
+          user_id: payload.userId || "", // or get from auth context
+          order_name: payload.order_name,
+          customer_name: payload.customer_name,
+          customer_number: payload.customer_number || undefined,
+          total: payload.total,
+          items: payload.items,
+          status: payload.status,
+          payment_status: payload.payment_status as PaymentStatus,
+          discount: payload.discount,
+          shipping_address: payload.shipping_address || undefined,
+          shipping_city: payload.shipping_city || undefined,
+          shipping_postal_code: payload.shipping_postal_code || undefined,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }
+      ]);
+      
       onClose()
     } catch (error) {
       console.error(error);

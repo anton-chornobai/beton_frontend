@@ -12,7 +12,7 @@ export const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getProducts("/v1/products");
+        const response = await getProducts("/v1/products?status=displayed");
         const data = await response.json();
         setItems(data?.data ?? []);
       } catch (error) {

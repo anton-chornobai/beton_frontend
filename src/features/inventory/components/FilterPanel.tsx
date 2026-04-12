@@ -20,12 +20,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         className={styles.addButton}
         onClick={() => setIsModalOpen(true)}
       >
-        + Add New Product
+        + Додати Продукт
       </button>
 
       <input
         type="text"
-        placeholder="Search by title..."
+        placeholder="Шукати за назвою..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className={styles.searchInput}
@@ -33,16 +33,16 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
       <div className={styles.filters}>
         <button onClick={() => setFilter({ status: "displayed" })}>
-          Displayed
+          Відображений
         </button>
         <button onClick={() => setFilter({ status: "archived" })}>
-          Archived
+          Архівований
         </button>
         <button onClick={() => setFilter({ sortPrice: "asc" })}>
-          Price ↑
+          Ціна ↑
         </button>
         <button onClick={() => setFilter({ sortPrice: "desc" })}>
-          Price ↓
+          Ціна ↓
         </button>
         <button
           onClick={() => {
@@ -50,7 +50,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             setSearch("");
           }}
         >
-          Clear Filters
+          Очистити Фільтри
         </button>
       </div>
     </div>

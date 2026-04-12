@@ -1,4 +1,4 @@
-export type OrderStatus = "очікується" | "підтверджено" | "відправлено" | "доставлено" | "скасовано";
+export type OrderStatus = "pending" | "підтверджено" | "відправлено" | "доставлено" | "скасовано";
 export type PaymentStatus = "неоплачено" | "оплачено" | "не вдалося" | "повернено";
 
 export interface Size {

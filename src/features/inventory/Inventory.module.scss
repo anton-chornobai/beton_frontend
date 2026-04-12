@@ -114,15 +114,7 @@ button {
   }
 }
 
-.closeButton {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  border: none;
-  background: none;
-  font-size: 22px;
-  cursor: pointer;
-}
+
 
 .form {
   display: flex;
@@ -189,4 +181,14 @@ button {
   &:hover {
     background-color: #218838;
   }
+}
+
+.closeButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: none;
+
+  font-size: 22px;
+  cursor: pointer;
 }

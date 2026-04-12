@@ -55,7 +55,6 @@ const AddProductModal: React.FC<Props> = ({
             </select>
           </label>
 
-          {/* Price */}
           <label>
             Ціна
             <input
@@ -63,13 +62,12 @@ const AddProductModal: React.FC<Props> = ({
               type="number"
               min={0}
               step={1}
-              value={form.price}
+              value={form.price || ""}
               onChange={onChange}
               required
             />
           </label>
 
-          {/* Stock Quantity */}
           <label>
             Кількість на складі
             <input
@@ -77,24 +75,22 @@ const AddProductModal: React.FC<Props> = ({
               type="number"
               min={0}
               step={1}
-              value={form.stock_quantity}
+              value={form.stock_quantity || ""}
               onChange={onChange}
               required
             />
           </label>
 
-          {/* Image URL */}
           <label>
             URL зображення
             <input
               name="image_url"
-              type="text"
-              value={form.image_url || ""}
+              accept="image/*"
+              type="file"
               onChange={onChange}
             />
           </label>
 
-          {/* Color */}
           <label>
             Колір
             <input
@@ -105,7 +101,6 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
-          {/* Description */}
           <label>
             Опис
             <textarea
@@ -115,7 +110,6 @@ const AddProductModal: React.FC<Props> = ({
             />
           </label>
 
-          {/* Status */}
           <label>
             Статус
             <select
@@ -129,7 +123,7 @@ const AddProductModal: React.FC<Props> = ({
             </select>
           </label>
 
-          {/* Weight */}
+
           <label>
             Вага (грам)
             <input
@@ -137,12 +131,11 @@ const AddProductModal: React.FC<Props> = ({
               type="number"
               min={0}
               step={1}
-              value={form.weight ?? 0}
+              value={form.weight || ""}
               onChange={onChange}
             />
           </label>
 
-          {/* Size Width */}
           <label>
             Ширина (см)
             <input
@@ -150,12 +143,11 @@ const AddProductModal: React.FC<Props> = ({
               type="number"
               min={0}
               step={1}
-              value={form?.width ?? 0}
+              value={form?.width || ""}
               onChange={onChange}
             />
           </label>
 
-          {/* Size Height */}
           <label>
             Висота (см)
             <input
@@ -163,7 +155,7 @@ const AddProductModal: React.FC<Props> = ({
               type="number"
               min={0}
               step={1}
-              value={form?.height ?? 0}
+              value={form?.height || ""}
               onChange={onChange}
             />
           </label>

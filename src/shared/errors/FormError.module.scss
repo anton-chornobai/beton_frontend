@@ -1,0 +1,19 @@
+.error {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #ff4d4f;
+  font-weight: 500;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

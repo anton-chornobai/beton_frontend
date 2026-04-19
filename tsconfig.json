@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "ESNext",                    // output target, supports async/await
-      "lib": ["DOM", "ES2016", "DOM.Iterable"],  // include Promise, Map, Set, etc.
+      "lib": ["DOM", "ES2016", "DOM.Iterable", "es2017"],  // include Promise, Map, Set, etc.
       "module": "ESNext",
       "moduleResolution": "Node",
       "jsx": "react-jsx",

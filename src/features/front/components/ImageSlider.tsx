@@ -13,6 +13,8 @@ type Slide = {
     { image: pathway, text: "Image 1", short_description: "Description 1" },
     { image: animals, text: "Image 2", short_description: "Description 2" },
     { image: vases, text: "Image 3", short_description: "Description 3" },
+
+    { image: "https://storage.googleapis.com/stezka_bucket/stezka_images/IMG_0353.jpeg", text: "Image 3", short_description: "Description 3" },
   ]
 
 const ImageSlider = () => {

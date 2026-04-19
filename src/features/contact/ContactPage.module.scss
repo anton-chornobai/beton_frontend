@@ -1,111 +1,204 @@
 .page {
   width: 100%;
   min-height: 100vh;
-
   display: flex;
-  justify-content: center; 
-
-  overflow-x: hidden; 
+  justify-content: center;
 }
 
 .inner {
   width: 100%;
-  max-width: 1400px; 
+  max-width: 1400px;
 
   display: flex;
+  flex-direction: row;
+
+  padding: 80px 40px;
 }
 
-/* LEFT */
-.left {
-  flex: 1;
-  padding: 100px 60px;
-
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    font-size: 52px;
-    color: #0f172a;
-  }
-
-  p {
-    color: #475569;
-    max-width: 520px;
-    line-height: 1.7;
-  }
-}
-
-/* RIGHT */
+.left,
 .right {
   flex: 1;
-  padding: 60px;
+  min-width: 0;
+}
 
+.left {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.left h2 {
+  font-size: 54px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.left p {
+  color: #475569;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.block {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.block h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-left: 3px solid #2563eb;
+  padding-left: 10px;
+}
+
+.block p {
+  margin: 4px 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.socials a svg {
+  font-size: 18px;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
+}
+
+.facebook {
+  background: #1877f2;
+}
+
+.telegram {
+  background: #229ed9;
+}
+
+.linkedin {
+  background: #0a66c2;
+}
+
+.socials a:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+.right {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 40px;
 }
 
-/* FORM */
 .form {
-  input,
-  textarea {
-    width: 100%;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
 
-    padding: 14px;
-    border-radius: 10px;
+  margin: 0 auto; /* 🔥 key fix */
 
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-    color: #0f172a;
-    font-size: 14px;
+  padding: 28px 50px 30px 25px;
 
-    outline: none;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  textarea {
-    min-height: 160px;
-    max-height: 160px; 
-    resize: none;     
-
-    overflow-y: auto;  
-  }
-
-  textarea:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-  }
+  box-sizing: border-box;
 }
-/* ================= RESPONSIVE ================= */
 
-@media (max-width: 900px) {
-  .left {
-    padding: 60px 30px;
-  }
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 14px;
 
-  .right {
-    padding: 40px;
-  }
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+
+  outline: none;
+  font-size: 14px;
+}
+
+.form textarea {
+  min-height: 160px;
+  resize: none;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form button {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.form button:hover {
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
   .inner {
-    flex-direction: column; 
+    flex-direction: column;
+    padding: 40px 20px;
   }
 
   .left,
   .right {
-    padding: 25px 20px;
-  }
-
-  .form {
-    max-width: 100%;
+    padding: 20px;
   }
 
   .left h2 {
     font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .socials {
+    flex-direction: column;
+  }
+
+  .socials a {
+    width: 100%;
+    justify-content: center;
   }
 }
